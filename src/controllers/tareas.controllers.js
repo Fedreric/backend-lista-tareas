@@ -28,3 +28,18 @@ export const crearTarea = async (request, response) => {
     })
   }
 }
+
+// DELETE
+export const borrarTarea = async (request, response) => {
+  try {
+    await Tarea.findByIdAndDelete(request.params.id)
+    response.status(200).json({
+      message: 'Tarea eliminada con exito'
+    })
+  } catch (error) {
+    console.log(error)
+    response.status(404).json({
+      message: 'Error al borrar la tarea'
+    })
+  }
+}
