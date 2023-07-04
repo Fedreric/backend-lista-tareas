@@ -43,3 +43,17 @@ export const borrarTarea = async (request, response) => {
     })
   }
 }
+// PUT
+export const editarTarea = async (request, response) => {
+  try {
+    await Tarea.findByIdAndUpdate(request.params.id, request.body)
+    response.status(200).json({
+      message: 'Tarea modificada con exito'
+    })
+  } catch (error) {
+    console.log(error)
+    response.status(304).json({
+      message: 'No se pudo editar la tarea'
+    })
+  }
+}
