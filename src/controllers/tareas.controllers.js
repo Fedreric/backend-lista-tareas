@@ -57,3 +57,15 @@ export const editarTarea = async (request, response) => {
     })
   }
 }
+// GET ONE TASK
+export const obtenerTarea = async (request, response) => {
+  try {
+    const tarea = await Tarea.findById(request.params.id);
+    response.status(200).json(tarea)
+  } catch (error) {
+    console.log(error)
+    response.status(404).json({
+      message: 'Error al buscar la tarea'
+    })
+  }
+}
